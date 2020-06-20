@@ -1,9 +1,10 @@
 .container-fluid,
 .row {
   height: 100%;
+  background-color: rgb(238, 238, 238);
 }
 .App-col {
-  background: rgb(228, 228, 228);
+  height: 100%;
 }
 
 .App-col:last-child {

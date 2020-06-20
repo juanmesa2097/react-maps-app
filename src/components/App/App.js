@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import Navbar from "../Navbar/Navbar";
+import Toolbar from "../Toolbar/Toolbar";
 import "./App.css";
+import MapContainer from "../MapContainer/MapContainer";
 
 export default class App extends Component {
   render() {
     return (
       <div className="container-fluid">
         <div className="row align-items-center">
-          <div className="App-col col-12 col-md-6"></div>
           <div className="App-col col-12 col-md-6">
-            <Navbar></Navbar>
+            <MapContainer></MapContainer>
+          </div>
+          <div className="App-col col-12 col-md-6">
+            <Toolbar></Toolbar>
           </div>
         </div>
       </div>
