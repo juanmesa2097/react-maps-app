@@ -1,0 +1,16 @@
+.container-fluid,
+.row {
+  height: 100%;
+}
+.App-col {
+  background: rgb(228, 228, 228);
+}
+
+.App-col:last-child {
+  height: 92%;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.08), 0 0 30px -5px rgba(0, 0, 0, 0.27);
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding: 2rem;
+}

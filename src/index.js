@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../node_modules/bulma/css/bulma.min.css";
-import App from "./App";
-import "./index.css";
+import App from "./components/App/App";
 import * as serviceWorker from "./serviceWorker";
+import "./styles/bootstrap-reboot.min.css";
+import "./styles/bootstrap-grid.min.css";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
