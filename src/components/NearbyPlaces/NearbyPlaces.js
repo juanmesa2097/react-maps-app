@@ -9,6 +9,8 @@ export default class NearbyPlaces extends Component {
     this.state = {
       show: false,
       nearbyPlaces: [],
+      itemsToShow: 9,
+      expanded: false,
     };
 
     this.handleShow = this.handleShow.bind(this);
@@ -39,6 +41,21 @@ export default class NearbyPlaces extends Component {
     this.setState({ show: true });
   }
 
+  handleShowMore = () => {
+    console.log(this.state);
+    this.state.itemsToShow === 9
+      ? this.setState({
+          itemsToShow: this.state.nearbyPlaces.length,
+          expanded: true,
+        })
+      : this.setState({ itemsToShow: 9, expanded: false });
+  };
+
+  handlePickDestination(name) {
+    this.props.onPickDestination(name);
+    this.handleClose();
+  }
+
   render() {
     return (
       <div>
@@ -52,7 +69,7 @@ export default class NearbyPlaces extends Component {
           </Modal.Header>
           <Modal.Body>
             {this.state.nearbyPlaces
-              .slice(1, this.state.nearbyPlaces.length)
+              .slice(0, this.state.itemsToShow)
               .map((nearbyPlace, i) => (
                 <div key={i} className="mb-5">
                   <Card>
@@ -60,12 +77,14 @@ export default class NearbyPlaces extends Component {
                       <div className="d-flex justify-content-between">
                         <div>
                           <h2 className="h4">{nearbyPlace.name}</h2>
-                          <div className="d-flex">
-                            <Rating rating={nearbyPlace.rating}></Rating>
-                            <span className="ml-2">
-                              ({nearbyPlace.user_ratings_total})
-                            </span>
-                          </div>
+                          {nearbyPlace.rating ? (
+                            <div className="d-flex">
+                              <Rating rating={nearbyPlace.rating}></Rating>
+                              <span className="ml-2">
+                                ({nearbyPlace.user_ratings_total})
+                              </span>
+                            </div>
+                          ) : null}
                           <address className="mb-4 text-secondary">
                             {nearbyPlace.vicinity}
                           </address>
@@ -86,13 +105,34 @@ export default class NearbyPlaces extends Component {
                           )}
                         </div>
                       </div>
-                      <Button variant="primary">
+                      <Button
+                        variant="primary"
+                        onClick={this.handlePickDestination.bind(
+                          this,
+                          nearbyPlace.name
+                        )}
+                        size="lg"
+                      >
                         Seleccionar como destino
                       </Button>
                     </Card.Body>
                   </Card>
                 </div>
               ))}
+
+            <div className="d-flex justify-content-center py-5">
+              <Button
+                variant="secondary"
+                onClick={this.handleShowMore}
+                size="lg"
+              >
+                {this.state.expanded ? (
+                  <span>Mostrar menos</span>
+                ) : (
+                  <span>Mostrar más</span>
+                )}
+              </Button>
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose} size="lg">

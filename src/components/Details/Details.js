@@ -16,6 +16,7 @@ export default class Details extends Component {
     super();
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOnPickDestination = this.handleOnPickDestination.bind(this);
   }
 
   handleSearchChange(e) {
@@ -26,6 +27,12 @@ export default class Details extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.onSearch(this.state.searchValue);
+  }
+
+  handleOnPickDestination(name) {
+    console.log(name);
+    this.setState({ searchValue: name });
+    this.props.onSearch(name);
   }
 
   render() {
@@ -100,12 +107,13 @@ export default class Details extends Component {
                 <NearbyPlaces
                   location={this.props.details.geometry.location}
                   map={this.props.map}
+                  onPickDestination={this.handleOnPickDestination}
                 ></NearbyPlaces>
               </div>
 
               {/* Photos */}
               <div className="Details-images">
-                {this.props.details.photos.map((photo, i) => (
+                {this.props.details.photos?.map((photo, i) => (
                   <DetailsImage key={i} url={photo.getUrl()}></DetailsImage>
                 ))}
               </div>
