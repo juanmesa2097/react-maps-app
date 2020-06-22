@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import Toolbar from "../Toolbar/Toolbar";
+import Details from "../Details/Details";
 import "./App.css";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { map: "" };
-    this.service = undefined;
+    this.state = {
+      details: undefined,
+    };
     this.handleSearch = this.handleSearch.bind(this);
   }
 
@@ -45,9 +46,11 @@ export default class App extends Component {
           fields: [
             "name",
             "rating",
-            "formatted_phone_number",
+            "formatted_address",
             "geometry",
             "photos",
+            "reviews",
+            "opening_hours",
           ],
         };
 
@@ -61,31 +64,36 @@ export default class App extends Component {
 
   handleDetailsResult(results, status) {
     if (status === "OK") {
-      const lat = results.geometry.location.lat();
-      const lng = results.geometry.location.lng();
-      this.refreshMapLocation(lat, lng);
+      this.setState({
+        details: results,
+      });
       console.log(results);
+      this.refreshMapLocation();
     }
   }
 
   refreshMapLocation(lat, lng) {
-    this.setState({
-      map: new window.google.maps.Map(document.getElementById("map"), {
-        center: new window.google.maps.LatLng(lat, lng),
-        zoom: 15,
-      }),
+    this.map = new window.google.maps.Map(document.getElementById("map"), {
+      center: new window.google.maps.LatLng(
+        this.state.details.geometry.location.lat(),
+        this.state.details.geometry.location.lng()
+      ),
+      zoom: 15,
     });
   }
 
   render() {
     return (
-      <div className="container-fluid pl-0">
-        <div className="row align-items-center">
-          <div className="App-col col-12 col-md-6">
+      <div className="h-100 container-fluid pl-0">
+        <div className="h-100 row align-items-center">
+          <div className="h-100 col-12 col-md-6">
             <div id="map"></div>
           </div>
-          <div className="App-col col-12 col-md-6">
-            <Toolbar onSearch={this.handleSearch}></Toolbar>
+          <div className="App-details col-12 col-md-6">
+            <Details
+              details={this.state.details}
+              onSearch={this.handleSearch}
+            ></Details>
           </div>
         </div>
       </div>

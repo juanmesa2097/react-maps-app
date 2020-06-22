@@ -1,52 +1,10 @@
-.container-fluid,
-.row {
-  height: 100%;
-  background-color: rgb(238, 238, 238);
-}
-.App-col {
-  height: 100%;
-}
-
-.App-col:last-child {
+.App-details {
   height: 92%;
   background: #fff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.08), 0 0 30px -5px rgba(0, 0, 0, 0.27);
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   padding: 2rem;
-}
-
-.Toolbar-search-wrapper {
-  width: 100%;
-  position: relative;
-}
-
-.Toolbar-search-wrapper img {
-  width: 20px;
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.Toolbar-search {
-  width: 100%;
-  border: solid 1px #efefef;
-  border-radius: 180px;
-  background-color: #efefef;
-  padding: 0.7rem 1.5rem 0.7rem 4rem;
-  color: #333;
-  outline: none;
-  transition: ease all 300ms;
-}
-
-.Toolbar-search:hover {
-  border-color: #eaeaea;
-  background-color: #eaeaea;
-}
-
-.Toolbar-search:focus {
-  box-shadow: 0 0 0 3px #fff, 0 0 0 7px #4d7bc7b3;
 }
 
 #map {
