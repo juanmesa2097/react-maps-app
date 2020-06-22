@@ -4,6 +4,7 @@ import DetailsImage from "../DetailsImage/DetailsImage";
 import DetailsOpeningHours from "../DetailsOpeningHours/DetailsOpeningHours";
 import DetailsReviews from "../DetailsReviews/DetailsReviews";
 import "./Details.css";
+import Rating from "../Rating/Rating";
 
 export default class Details extends Component {
   state = {
@@ -48,12 +49,26 @@ export default class Details extends Component {
         {/* Details */}
         {this.props.details ? (
           <div className="row">
-            <div className="col-12">
-              {/* Basic info */}
+            <div className="col-12 p-0">
               <div className="row mb-5">
                 <div className="col-12">
-                  <h1 className="h2">{this.props.details.name}</h1>
-                  <div>{this.props.details.formatted_address}</div>
+                  {/* Basic info */}
+                  <h1>{this.props.details.name}</h1>
+                  <div className="text-secondary mb-5">
+                    {this.props.details.formatted_address}
+                  </div>
+
+                  {/* Rating */}
+                  <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center justify-content-center flex-column">
+                      <h2 className="display-2">{this.props.details.rating}</h2>
+                      <Rating
+                        size="lg"
+                        rating={this.props.details.rating}
+                      ></Rating>
+                    </div>
+                    <div></div>
+                  </div>
                 </div>
               </div>
 
