@@ -3,8 +3,9 @@ import { InputGroup, FormControl } from "react-bootstrap";
 import DetailsImage from "../DetailsImage/DetailsImage";
 import DetailsOpeningHours from "../DetailsOpeningHours/DetailsOpeningHours";
 import DetailsReviews from "../DetailsReviews/DetailsReviews";
-import "./Details.css";
 import Rating from "../Rating/Rating";
+import NearbyPlaces from "../NearbyPlaces/NearbyPlaces";
+import "./Details.css";
 
 export default class Details extends Component {
   state = {
@@ -59,16 +60,19 @@ export default class Details extends Component {
                   </div>
 
                   {/* Rating */}
-                  <div className="d-flex align-items-center">
-                    <div className="d-flex align-items-center justify-content-center flex-column">
-                      <h2 className="display-2">{this.props.details.rating}</h2>
-                      <Rating
-                        size="lg"
-                        rating={this.props.details.rating}
-                      ></Rating>
+                  {this.props.details.rating ? (
+                    <div className="d-flex align-items-center">
+                      <div className="d-flex align-items-center justify-content-center flex-column">
+                        <h2 className="display-2">
+                          {this.props.details.rating}
+                        </h2>
+                        <Rating
+                          size="lg"
+                          rating={this.props.details.rating}
+                        ></Rating>
+                      </div>
                     </div>
-                    <div></div>
-                  </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -83,13 +87,21 @@ export default class Details extends Component {
               ) : null}
 
               {/* Reviews */}
-              {this.props.details.reviews.length > 0 ? (
+              {this.props.details.reviews?.length > 0 ? (
                 <div className="mb-5">
                   <DetailsReviews
                     reviews={this.props.details.reviews}
                   ></DetailsReviews>
                 </div>
               ) : null}
+
+              {/* Nearby places */}
+              <div className="mb-5">
+                <NearbyPlaces
+                  location={this.props.details.geometry.location}
+                  map={this.props.map}
+                ></NearbyPlaces>
+              </div>
 
               {/* Photos */}
               <div className="Details-images">

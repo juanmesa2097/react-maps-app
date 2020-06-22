@@ -86,11 +86,12 @@ export default class App extends Component {
     return (
       <div className="h-100 container-fluid pl-0">
         <div className="h-100 row align-items-center">
-          <div className="h-100 col-12 col-md-6">
+          <div className="h-100 col-12 col-md-8">
             <div id="map"></div>
           </div>
-          <div className="App-details col-12 col-md-6">
+          <div className="App-details col-12 col-md-4">
             <Details
+              map={this.map}
               details={this.state.details}
               onSearch={this.handleSearch}
             ></Details>
