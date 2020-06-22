@@ -48,3 +48,8 @@
 .Toolbar-search:focus {
   box-shadow: 0 0 0 3px #fff, 0 0 0 7px #4d7bc7b3;
 }
+
+#map {
+  width: 100%;
+  height: 100%;
+}
