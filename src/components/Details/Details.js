@@ -58,14 +58,23 @@ export default class Details extends Component {
               </div>
 
               {/* Opening hours */}
-              <div className="mb-5">
-                <DetailsOpeningHours></DetailsOpeningHours>
-              </div>
+              {this.props.details.opening_hours ? (
+                <div className="mb-5">
+                  <DetailsOpeningHours
+                    isOpen={this.props.details.opening_hours.isOpen()}
+                    openingHours={this.props.details.opening_hours.weekday_text}
+                  ></DetailsOpeningHours>
+                </div>
+              ) : null}
 
               {/* Reviews */}
-              <div className="mb-5">
-                <DetailsReviews></DetailsReviews>
-              </div>
+              {this.props.details.reviews.length > 0 ? (
+                <div className="mb-5">
+                  <DetailsReviews
+                    reviews={this.props.details.reviews}
+                  ></DetailsReviews>
+                </div>
+              ) : null}
 
               {/* Photos */}
               <div className="Details-images">

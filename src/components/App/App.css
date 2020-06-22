@@ -5,6 +5,7 @@
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   padding: 2rem;
+  overflow-y: scroll;
 }
 
 #map {
