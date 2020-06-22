@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +33,9 @@ export class MapContainer extends Component {
   };
 
   render() {
+    if (!this.props.loaded) {
+      return <div>Loading...</div>;
+    }
     return (
       <Map
         google={this.props.google}
