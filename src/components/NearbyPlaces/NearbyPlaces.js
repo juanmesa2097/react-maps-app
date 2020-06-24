@@ -59,7 +59,7 @@ export default class NearbyPlaces extends Component {
   render() {
     return (
       <div>
-        <Button variant="primary" onClick={this.handleShow} size="lg">
+        <Button variant="secondary" onClick={this.handleShow} size="lg">
           Buscar lugares cercanos
         </Button>
 

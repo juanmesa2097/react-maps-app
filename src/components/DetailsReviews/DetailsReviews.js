@@ -18,7 +18,7 @@ export default class DetailsReviews extends Component {
   render() {
     return (
       <div>
-        <Button variant="primary" onClick={this.handleShow} size="lg">
+        <Button variant="secondary" onClick={this.handleShow} size="lg">
           Mostrar comentarios
         </Button>
 

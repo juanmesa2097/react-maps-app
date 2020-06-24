@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { InputGroup, FormControl } from "react-bootstrap";
+import { InputGroup, FormControl, Button } from "react-bootstrap";
 import DetailsImage from "../DetailsImage/DetailsImage";
 import DetailsOpeningHours from "../DetailsOpeningHours/DetailsOpeningHours";
 import DetailsReviews from "../DetailsReviews/DetailsReviews";
@@ -12,11 +12,12 @@ export default class Details extends Component {
     searchValue: "",
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnPickDestination = this.handleOnPickDestination.bind(this);
+    this.handleGoToDestination = this.handleGoToDestination.bind(this);
   }
 
   handleSearchChange(e) {
@@ -34,6 +35,8 @@ export default class Details extends Component {
     this.setState({ searchValue: name });
     this.props.onSearch(name);
   }
+
+  handleGoToDestination() {}
 
   render() {
     return (
@@ -66,9 +69,9 @@ export default class Details extends Component {
                     {this.props.details.formatted_address}
                   </div>
 
-                  {/* Rating */}
-                  {this.props.details.rating ? (
-                    <div className="d-flex align-items-center">
+                  <div className="d-flex align-items-center justify-content-between">
+                    {/* Rating */}
+                    {this.props.details.rating ? (
                       <div className="d-flex align-items-center justify-content-center flex-column">
                         <h2 className="display-2">
                           {this.props.details.rating}
@@ -78,8 +81,22 @@ export default class Details extends Component {
                           rating={this.props.details.rating}
                         ></Rating>
                       </div>
+                    ) : null}
+
+{/* Pick destination */}
+                    <div>
+                      <Button
+                        variant="primary"
+                        onClick={this.handleGoToDestination}
+                        size="lg"
+                      >
+                        <div className="d-flex align-items-center">
+                          <i className="im im-location mr-3"></i>
+                          Ir al destino indicado
+                        </div>
+                      </Button>
                     </div>
-                  ) : null}
+                  </div>
                 </div>
               </div>
 
